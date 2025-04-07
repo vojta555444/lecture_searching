@@ -1,5 +1,6 @@
 import json
 import os
+import time
 from itertools import count
 
 # get current working directory path
@@ -56,13 +57,16 @@ def binary_search(ordered_list:list, number:int)->int|None:
         middle_index = (right_index+left_index)//2
 
 def main():
-    file_name = "sequential.json"
 
+    file_name = "sequential.json"
     seq = read_data(file_name, field="ordered_numbers")
     print(seq)
 
-    set_seq = binary_search(seq,-1)
-    print(set_seq)
+    start = time.time()
+    set_seq = binary_search(seq,120)
+    finish = time.time()
+    time_code = finish-start
+    print(f"{set_seq}, {time_code}")
 
 if __name__ == '__main__':
     main()
