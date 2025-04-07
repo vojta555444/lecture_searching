@@ -42,14 +42,26 @@ def pattern_search(sequence:list, pattern):
         index+=1
     return index_set
 
+def binary_search(ordered_list:list, number:int)->int|None:
+    left_index = 0
+    right_index = len(ordered_list)
+    middle_index = int(right_index / 2)
+    while left_index <= right_index:
+        if ordered_list[middle_index]==number:
+            return middle_index
+        elif ordered_list[middle_index] > number:
+            right_index = middle_index-1
+        else:
+            left_index = middle_index+1
+        middle_index = (right_index+left_index)//2
+
 def main():
     file_name = "sequential.json"
 
-    seq = read_data(file_name, field="dna_sequence")
+    seq = read_data(file_name, field="ordered_numbers")
     print(seq)
 
-    set_seq = pattern_search(seq,"GCA")
-    print(len(seq))
+    set_seq = binary_search(seq,-1)
     print(set_seq)
 
 if __name__ == '__main__':
